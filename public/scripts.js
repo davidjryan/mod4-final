@@ -7,7 +7,7 @@ function prependCards(cards) {
     $("#card-container").prepend(`
       <article id="${card.id}" class="card">
           <h4 class="title">${card.title}</h4>
-          <button class="delete" onclick="deleteCard()">Delete</button>
+          <button class="delete">Delete</button>
       </article>`);
   });
 };
@@ -42,12 +42,16 @@ const submitCard = async () => {
 
 
 
-async function deleteCard(event) {
+async function deleteCard() {
+
   // why the hell does this conitinue to scope to window
   const ideaID = $(this).closest("article").prop("id");
 
   await fetch(`/api/v1/mod4final/${ideaID}`, {
     method: 'DELETE',
+    headers: {
+      "Content-Type": "application/json"
+    },
   })
   $(this).closest("article").remove();
 }

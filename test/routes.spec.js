@@ -42,7 +42,7 @@ describe("API Routes", () => {
     it("should return all the cards", () => {
       return chai
         .request(server)
-        .get("/api/v1/mod4final")
+        .get("/api/v1/mod4final_test")
         .then(response => {
           response.should.have.status(200);
           response.should.be.json;
@@ -64,7 +64,7 @@ describe("API Routes", () => {
         .request(server)
         .post("/api/v1/mod4final")
         .send({
-          test: "Do the thing"
+          title: "Do the thing"
         })
         .then(response => {
           response.should.have.status(201);
@@ -95,7 +95,7 @@ describe("API Routes", () => {
   describe('DELETE api/v1/mod4final', () => {
     let cardToDelete;
     beforeEach( done => {
-      knex('mod4final').first().then(card => {
+      knex('mod4final_test').first().then(card => {
         cardToDelete = card
         done()
       })
