@@ -2,19 +2,15 @@ $(document).ready(function() {
   fetchCards();
 });
 
-const prependCards = items => {
-  items.forEach((item, index) => {
+const prependCards = cards => {
+  cards.forEach((card, index) => {
     $("#card-container").prepend(`
-    <article id="card${item.id}" class="card">
-        <h4 class="title">${item.title}</h4>
-        <button class="delete" onclick="deleteButton()">Delete</button>
-    </article>`);
+      <article id="${card.id}" class="card">
+          <h4 class="title">${card.title}</h4>
+          <button class="delete" onclick="deleteCard()">Delete</button>
+      </article>`);
   });
 };
-
-async function deleteButton() {
-
-}
 
 const fetchCards = async () => {
   const cardFetch = await fetch('http://localhost:3000/api/v1/mod4final/')
@@ -24,3 +20,37 @@ const fetchCards = async () => {
 
   prependCards(cardData.title)
 }
+
+const submitCard = async () => {
+  const title = $("#title-input").val();
+
+  const savePost = await fetch("http://localhost:3000/api/v1/mod4final", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({ title })
+  });
+
+  const response = await savePost.json();
+  console.log(response);
+
+  prependCards([{ title, id: response.id }]);
+
+  $(".header-input").val("");
+};
+
+
+
+async function deleteCard() {
+  const ideaID = $(this).closest("article").prop("id");
+
+  console.log($(this))
+  await fetch(`/api/v1/mod4final/${ideaID}`, {
+    method: 'DELETE',
+  })
+  $(this).closest("article").remove();
+}
+
+$("#card-container").on("click", ".delete", deleteCard);
+$("#submit-input").on("click", submitCard);
