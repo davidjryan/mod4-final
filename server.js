@@ -19,6 +19,17 @@ app.get("/", (request, response) => {
   response.send("Ground Control to Major Tom!!!!!!!");
 });
 
+app.get("/api/v1/mod4final", (request, response) => {
+  database("mod4final")
+    .select()
+    .then(title => {
+      response.status(200).json({ title });
+    })
+    .catch(error => {
+      response.status(500).json({ error });
+    });
+});
+
 app.listen(app.get("port"), () => {
   /* eslint-disable no-console */
   console.log(
