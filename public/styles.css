@@ -44,9 +44,13 @@ main {
 
 article {
   display: flex;
-  width: 345px;
+  width: 333px;
+  border: solid black 1px;
+  padding: 5px;
+  margin: 5px 0 5px 0;
 }
 
 .delete {
+  padding: 2px;
   margin-left: auto;
 }

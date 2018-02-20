@@ -20,8 +20,8 @@ app.get("/", (request, response) => {
 });
 
 app.get("/api/v1/mod4final", (request, response) => {
-  database("mod4final")
-    .select()
+  console.log(request)
+  database("mod4final").select()
     .then(title => {
       response.status(200).json({ title });
     })
@@ -45,6 +45,18 @@ app.post("/api/v1/mod4final", (request, response) => {
     .insert(title, "id")
     .then(item => response.status(201).json({ id: title[0] }))
     .catch(error => response.status(500).json({ error }));
+});
+
+app.delete("/api/v1/mod4final/:id", (request, response) => {
+  const { id } = request.params;
+
+  database("mod4final").where({ id }).del()
+    .then(title => {
+      response.status(204).json(title);
+    })
+    .catch(error => {
+      response.status(422).json({ error });
+    });
 });
 
 app.listen(app.get("port"), () => {
