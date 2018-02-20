@@ -1,17 +1,26 @@
 $(document).ready(function() {
-  fetchItems();
+  fetchCards();
 });
 
-const prependItems = items => {
+const prependCards = items => {
   items.forEach((item, index) => {
     $("#card-container").prepend(`
     <article id="card${item.id}" class="card">
         <h4 class="title">${item.title}</h4>
-        <button class="delete" onclick="myFunction()">Delete</button>
+        <button class="delete" onclick="deleteButton()">Delete</button>
     </article>`);
   });
 };
 
-function deleteButton() {
+async function deleteButton() {
 
+}
+
+const fetchCards = async () => {
+  const cardFetch = await fetch('http://localhost:3000/api/v1/mod4final/')
+  const cardData = await cardFetch.json()
+
+  console.log(cardData)
+
+  prependCards(cardData.title)
 }
