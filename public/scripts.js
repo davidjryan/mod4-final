@@ -13,7 +13,7 @@ function prependCards(cards) {
 };
 
 const fetchCards = async () => {
-  const cardFetch = await fetch('http://localhost:3000/api/v1/mod4final/')
+  const cardFetch = await fetch('/api/v1/mod4final/')
   const cardData = await cardFetch.json()
 
   console.log(cardData)
@@ -24,7 +24,7 @@ const fetchCards = async () => {
 const submitCard = async () => {
   const title = $("#title-input").val();
 
-  const savePost = await fetch("http://localhost:3000/api/v1/mod4final", {
+  const savePost = await fetch("/api/v1/mod4final", {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
