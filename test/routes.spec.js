@@ -14,7 +14,7 @@ describe("Client Routes", () => {
       .get("/")
       .then(response => {
         response.should.have.status(200);
-        resopnse.should.be.html;
+        response.should.be.html;
       })
       .catch(error => {
         throw error;
