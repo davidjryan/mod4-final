@@ -38,8 +38,8 @@ describe("API Routes", () => {
     });
   });
 
-  describe("GET api/v1/mod4final_test", () => {
-    it("should return all the garage items", () => {
+  describe("GET api/v1/mod4final", () => {
+    it("should return all the cards", () => {
       return chai
         .request(server)
         .get("/api/v1/mod4final")
@@ -59,7 +59,7 @@ describe("API Routes", () => {
   });
 
   describe("POST api/v1/mod4final", () => {
-    it("should post a garage item", () => {
+    it("should post a card", () => {
       return chai
         .request(server)
         .post("/api/v1/mod4final")
