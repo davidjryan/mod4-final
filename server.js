@@ -30,6 +30,23 @@ app.get("/api/v1/mod4final", (request, response) => {
     });
 });
 
+app.post("/api/v1/mod4final", (request, response) => {
+  const title = request.body;
+
+  for (const requiredParams of ["title"]) {
+    if (!title[requiredParams]) {
+      return response.status(422).json({
+        error: `You are missing ${requiredParams}`
+      });
+    }
+  }
+
+  database("mod4final")
+    .insert(title, "id")
+    .then(item => response.status(201).json({ id: title[0] }))
+    .catch(error => response.status(500).json({ error }));
+});
+
 app.listen(app.get("port"), () => {
   /* eslint-disable no-console */
   console.log(
