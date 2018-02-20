@@ -2,7 +2,7 @@ $(document).ready(function() {
   fetchCards();
 });
 
-const prependCards = cards => {
+function prependCards(cards) {
   cards.forEach((card, index) => {
     $("#card-container").prepend(`
       <article id="${card.id}" class="card">
@@ -42,10 +42,10 @@ const submitCard = async () => {
 
 
 
-async function deleteCard() {
+async function deleteCard(event) {
+  // why the hell does this conitinue to scope to window
   const ideaID = $(this).closest("article").prop("id");
 
-  console.log($(this))
   await fetch(`/api/v1/mod4final/${ideaID}`, {
     method: 'DELETE',
   })

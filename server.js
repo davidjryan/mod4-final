@@ -52,7 +52,7 @@ app.delete("/api/v1/mod4final/:id", (request, response) => {
 
   database("mod4final").where({ id }).del()
     .then(title => {
-      response.status(200).json(title);
+      response.status(204).json(title);
     })
     .catch(error => {
       response.status(422).json({ error });
