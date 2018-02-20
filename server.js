@@ -13,10 +13,10 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
 
-app.locals.title = "Garage Tracker";
+app.locals.title = "Major Tom's Mars List";
 
 app.get("/", (request, response) => {
-  response.send("GARAGE!!!!!!");
+  response.send("Ground Control to Major Tom!!!!!!!");
 });
 
 app.listen(app.get("port"), () => {
